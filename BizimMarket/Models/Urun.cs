@@ -18,8 +18,8 @@ namespace BizimMarket.Models
         public string ResimYolu { get; set; }
 
 
-
-        public int KategoriId { get; set; }
+        [Required(ErrorMessage = "Kategori alanı zorunludur.")]
+        public int? KategoriId { get; set; }
         public Kategori Kategori { get; set; }
     }
 }
