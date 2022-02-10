@@ -1,10 +1,10 @@
-﻿@model Urun 
+﻿@model YeniUrunViewModel 
 @{
     ViewBag.Title = "Yeni Ürün";
 }
 <div class="row">
     <div class="col-md-4">
-        <form method="post">
+        <form method="post" enctype="multipart/form-data">
             <div class="mb-3">
                 <label asp-for="Ad" class="form-label">Ad</label>
                 <input asp-for="Ad" type="text" class="form-control" />
@@ -23,6 +23,12 @@
                     <option value="">Seçiniz</option>
                 </select>
                 <span asp-validation-for="KategoriId" class="form-text"></span>
+            </div>
+
+            <div class="mb-3">
+                <label asp-for="Resim" class="form-label">Ürün Görseli</label>
+                <input type="file" asp-for="Resim" class="form-control" />
+                <span asp-validation-for="Resim" class="form-text"></span>
             </div>
 
             <button class="btn btn-primary">Ekle</button>
