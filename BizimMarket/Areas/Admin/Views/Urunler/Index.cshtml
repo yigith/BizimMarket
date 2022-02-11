@@ -13,17 +13,27 @@
             <th>Ad</th>
             <th>Fiyat</th>
             <th>Kategori</th>
+            <th>İşlemler</th>
         </tr>
     </thead>
     <tbody>
         @foreach (var item in Model)
         {
             <tr>
-                <td><img src="~/img/urunler/@item.ResimYolu" width="50" /></td>
+                <td><img src="~/img/urunler/@(item.ResimYolu ?? "resimyok.jpg")" width="50" /></td>
                 <td>@item.Id</td>
                 <td>@item.Ad</td>
                 <td>₺@item.Fiyat.ToString("n2")</td>
                 <td>@item.Kategori.Ad</td>
+                <td>
+                    <form class="d-inline-block" asp-controller="Urunler" asp-action="Sil" method="post" 
+                          onsubmit="return confirm('Ürünü silmek istediğinize emin misiniz?');">
+                        <input type="hidden" name="Id" value="@item.Id" />
+                        <button class="btn btn-danger">Sil</button>
+                    </form>
+
+                    <a class="btn btn-warning" asp-controller="Urunler" asp-action="Duzenle" asp-route-id="@item.Id">Düzenle</a>
+                </td>
             </tr>
         }
     </tbody>

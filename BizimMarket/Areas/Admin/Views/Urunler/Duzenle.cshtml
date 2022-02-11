@@ -1,0 +1,57 @@
+﻿@model UrunDuzenleViewModel
+@{
+    ViewBag.Title = "Ürün Düzenle";
+}
+<div class="row">
+    <div class="col-md-4">
+        <form method="post" enctype="multipart/form-data">
+            <input type="hidden" asp-for="Id" />
+            <div class="mb-3">
+                <label asp-for="Ad" class="form-label">Ad</label>
+                <input asp-for="Ad" type="text" class="form-control" />
+                <span asp-validation-for="Ad" class="form-text"></span>
+            </div>
+
+            <div class="mb-3">
+                <label asp-for="Fiyat" class="form-label">Fiyat</label>
+                <input asp-for="Fiyat" type="text" class="form-control" />
+                <span asp-validation-for="Fiyat" class="form-text"></span>
+            </div>
+
+            <div class="mb-3">
+                <label asp-for="KategoriId" class="form-label">Kategori</label>
+                <select asp-for="KategoriId" asp-items="ViewBag.Kategoriler" class="form-select">
+                    <option value="">Seçiniz</option>
+                </select>
+                <span asp-validation-for="KategoriId" class="form-text"></span>
+            </div>
+
+            <div class="mb-3">
+                <input type="hidden" asp-for="ResimYolu" />
+                <label asp-for="Resim" class="form-label">Ürün Görseli</label>
+                <div class="mb-2">
+                    <img id="imgOnizleme" class="img-thumbnail" src="~/img/urunler/@(Model.ResimYolu ?? "resimyok.jpg")" alt="Mevcut Ürün Görseli" width="100" />
+                </div>
+                <input type="file" asp-for="Resim" class="form-control" />
+                <span asp-validation-for="Resim" class="form-text"></span>
+            </div>
+
+            <button class="btn btn-primary">Kaydet</button>
+        </form>
+    </div>
+</div>
+
+@section Scripts { 
+    <script>
+        // https://stackoverflow.com/questions/4459379/preview-an-image-before-it-is-uploaded
+        var imgOnizleme = document.getElementById("imgOnizleme");
+        var inputResim = document.getElementById("Resim");
+
+        inputResim.onchange = event => {
+            var file = inputResim.files[0];
+            if (file) {
+                imgOnizleme.src = URL.createObjectURL(file);
+            }
+        };
+    </script>
+}

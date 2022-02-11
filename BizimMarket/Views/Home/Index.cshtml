@@ -23,7 +23,7 @@
             @foreach (var item in Model.Urunler)
             {
                 <div class="col-6 col-md-4">
-                    <img class="w-100" src="~/img/urunler/@item.ResimYolu" />
+                    <img class="w-100" src="~/img/urunler/@(item.ResimYolu ?? "resimyok.jpg")" />
                     <h6>@item.Ad</h6>
                     <p>₺@item.Fiyat.ToString("n2")</p>
                 </div>
